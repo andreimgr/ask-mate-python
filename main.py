@@ -74,7 +74,26 @@ def display_questions():
         questions=questions)
 
 
-app.route('/add-question', methods=["GET","POST"])
+@app.route('/question/<int:question_id>/', methods=["GET","POST"])
+def display_question_by_id(question_id):
+    questions = data_handler.questions_model.display_question_by_id(question_id)
+    answers_by_question_id = data_handler.answers_model.display_answers_by_question_id(question_id)
+ 
+    comments_for_questions = data_handler.comments_model.display_comments_by_question_id(question_id)
+
+    question_posted_by = data_handler.users_model.get_username_by_question_id(question_id)
+
+    questionVoteNumber = data_handler.questions_model.getVotes(question_id)
+
+
+    return render_template(
+        "question/question.html", 
+        questions=questions,
+        question_posted_by=question_posted_by,
+        answers_by_question_id=answers_by_question_id,
+        comments_for_questions=comments_for_questions)
+
+@app.route('/add-question', methods=["GET","POST"])
 def add_new_question():
 
     if "username" in session:
