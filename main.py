@@ -113,6 +113,14 @@ def add_new_question():
     return "In order to add a new question, you have to be logged in"
 
 
+@app.route('/question/<int:question_id>/delete')
+def delete_question(question_id):
+    question_user_id = data_handler.users_model.get_username_by_question_id(question_id)
+
+    if "username" in session and session["username"] == question_user_id:
+        data_handler.questions_model.delete_question_by_id(question_id)
+        return redirect(url_for('display_questions'))
+    return render_template("not-allowed.html")
 
 
 
