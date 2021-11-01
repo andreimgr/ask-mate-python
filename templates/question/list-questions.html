@@ -1,0 +1,44 @@
+{% include 'header.html' %}
+
+<h1>All questions</h1>
+
+<div class="sorting-questions">
+    <form action="/list" method="GET">
+        <select name="sort_by">
+            <option value="title">Title</option>
+            <option value="submission_time">Submission Time</option>
+            <option value="message">Message</option>
+            <option value="view_number">View number</option>
+            <option value="vote_number">Vote number</option>
+        </select>
+        <select name="sort_order">
+            <option value="ASC">Ascending</option>
+            <option value="DESC">Descending</option>
+        </select>
+        <button type="submit">Sort</button>
+    </form>
+    <div class="clear"></div>
+</div>
+
+<div class="questions_list">    
+    <ul>
+       {% for question in sorted_questions %}
+        <li>
+            <span class="submission_time">Posted by {{question.username }} @ {{ question.question_submission_time }}</span>
+            <a href="question/{{question.question_id}}">{{ question.question_title }}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</div>
+
+<div class="questions_list">
+    <ul>
+        {% for question in questions %}
+        <li>
+            <span class="submission_time">Posted by {{ question.username }} @ {{ question.question_submission_time }}</span>
+            <a href="question/{{question.question_id}}">{{ question.question_title }}</a>
+        </li>
+      {% endfor %}
+    </ul>
+    
+</div>
