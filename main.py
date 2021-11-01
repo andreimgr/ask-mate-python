@@ -50,6 +50,28 @@ def login():
 def logout():
     session.pop("username", None)
     return redirect(url_for("display_questions"))
+    
+
+@app.route('/list')
+def display_questions():
+    questions = data_handler.questions_model.display_questions()
+
+    sort_by = request.args.get("sort_by")
+    sort_order = request.args.get("sort_order")
+
+    if sort_by or sort_order:
+        sorted_questions = data_handler.questions_model.sort_questions(sort_by, sort_order)
+
+        return render_template(
+            'question/list-questions.html',
+            sorted_questions=sorted_questions)
+
+    if "username" in session:
+        return render_template("question/list-questions.html", questions=questions)
+
+    return render_template(
+        'question/list-questions.html', 
+        questions=questions)
 
 
 
