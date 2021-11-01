@@ -54,4 +54,13 @@ def delete_question_by_id (cursor: RealDictCursor, question_id: int) -> list:
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def edit_question_by_id (cursor: RealDictCursor, question_id: int, new_title: str, new_message: str) -> list:
+    query = f"""
+        UPDATE question
+        SET title = '{new_title}', message = '{new_message}'
+        WHERE id = {question_id}"""
+    cursor.execute(query)
+
+
 
