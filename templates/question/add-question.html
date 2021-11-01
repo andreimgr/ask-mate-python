@@ -1,0 +1,13 @@
+{% include 'header.html' %}
+
+<div class="add-question">
+    <form action="/add-question" method="POST">
+        <label>Question title:</label><br/>
+        <input type="text" name="question_title" placeholder="Title: ">
+        <label>Question message:</label><br/>
+        <textarea name="question_message" placeholder="Message: " cols="50" rows="10"></textarea>
+        <button type="submit">Post question</button>
+    </form>
+</div>
+
+{% include 'footer.html' %}
