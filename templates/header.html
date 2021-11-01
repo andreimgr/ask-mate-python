@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- <title>{% block page_title %}Main page{% endblock %}</title> -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+<div class="wrapper">
+    <div class="header">
+        <form id="search" action="/">
+            <input type="text" name="search_phrase" placeholder="Search in questions: ">
+            <button type="submit">Search</button>
+            <span class="clear"></span>
+        </form>    
+    </div>
+
+
