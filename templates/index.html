@@ -1,0 +1,32 @@
+{% include 'header.html' %}
+
+
+{% if search_results  %}
+<div class="search_results">
+    <h1>Search results:</h1>
+    <ul>
+        {% for result in search_results %}
+        <li><a href="/question/{{result.id}}/">{{ result.title }}</li>
+        <li><a href="/question/{{result.id}}/">{{ result.message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+{% if latest_five_questions %}
+<div class="questions_list">
+    <h1>Latest questions</h1>
+    <ul>
+        {% for question in latest_five_questions %}
+        <li>
+            <span class="submission_time">Posted by {{ question.username }} @ {{ question.question_submission_time }}</span><br/>
+            <a href="/question/{{ question.question_id }}/">{{ question.question_title }}</a>
+            <div class="clear"></div>
+        </li>
+        {% endfor %}
+    {% endif %}
+    </ul>
+</div>
+
+
+{% include 'footer.html' %}
