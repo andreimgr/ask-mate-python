@@ -28,4 +28,20 @@ def display_users (cursor: RealDictCursor) -> list:
         user_list.append(dict(user))
 
     return user_list
+    
+
+@database_common.connection_handler
+def get_id_for_user (cursor: RealDictCursor, username: str) -> list:
+    query = f"""
+        SELECT id
+        FROM users
+        WHERE username = '{username}'"""
+    cursor.execute(query)
+    fetch = dict(cursor.fetchone())
+
+    user_id = fetch["id"]
+
+    return user_id
+
+
 
