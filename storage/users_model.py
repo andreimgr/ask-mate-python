@@ -127,4 +127,27 @@ def user_answers_count(cursor: RealDictCursor, user_id: int) -> list:
     return fetch["user_answers_counter"]
 
 
+@database_common.connection_handler
+def get_user_answers (cursor: RealDictCursor, user_id: int) -> list:
+    query = f"""
+        SELECT users.id,
+        answer.id AS answer_id,
+        answer.message AS answer_message,
+        COUNT(answer.user_id)
+        FROM users
+        JOIN answer ON users.id = answer.user_id
+        WHERE answer.user_id = {user_id}
+        GROUP BY users.id, answer.id, answer.message"""
+
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    user_answers = []
+
+    for answers in fetch:
+        user_answers.append(dict(answers))
+
+    return user_answers
+
+
 
