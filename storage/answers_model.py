@@ -60,4 +60,12 @@ def edit_answers_by_id (cursor: RealDictCursor, answer_id: int, new_message: str
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def delete_answer_by_id (cursor: RealDictCursor, answer_id: int) -> list:
+    query = f"""
+        DELETE FROM answer
+        WHERE id = {answer_id}"""
+    cursor.execute(query)
+
+
 
