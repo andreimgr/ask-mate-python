@@ -63,4 +63,23 @@ def edit_question_by_id (cursor: RealDictCursor, question_id: int, new_title: st
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def sort_questions (cursor: RealDictCursor, order_by: str, sort_direction: str) -> list:
+    query = f"""
+        SELECT question.id AS question_id, question.submission_time AS question_submission_time, question.title AS question_title, users.username AS username
+        FROM question
+        JOIN users
+        ON question.user_id = users.id
+        ORDER BY {order_by} {sort_direction}"""
+    cursor.execute(query)   
+    fetch = cursor.fetchall()
+
+    sorted_questions = []
+
+    for row in fetch:
+        sorted_questions.append(dict(row))
+
+    return sorted_questions 
+
+
 
