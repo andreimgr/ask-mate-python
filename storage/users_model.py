@@ -60,4 +60,20 @@ def get_username_by_question_id (cursor: RealDictCursor, question_id: int) -> li
     return username
 
 
+@database_common.connection_handler
+def get_username_by_answer_id (cursor: RealDictCursor, answer_id: int) -> list:
+    query = f"""
+        SELECT username
+        FROM users
+        JOIN answer on answer.user_id = users.id
+        WHERE answer.id = {answer_id}"""
+
+    cursor.execute(query)
+    fetch = dict(cursor.fetchone())
+
+    username = fetch["username"]
+
+    return username
+
+
 
