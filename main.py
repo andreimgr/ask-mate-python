@@ -74,6 +74,27 @@ def display_questions():
         questions=questions)
 
 
+app.route('/add-question', methods=["GET","POST"])
+def add_new_question():
+
+    if "username" in session:
+        user_id = data_handler.users_model.get_id_for_user(session['username'])
+
+        if request.method == "POST":
+            form_input = dict(request.form)
+            new_question_title = form_input["question_title"]
+            new_question_message = form_input["question_message"]
+            new_question_id = int(data_handler.get_future_question_id()) + 1
+
+            data_handler.questions_model.add_new_question(new_question_title, new_question_message, user_id)
+            return redirect(url_for("display_question_by_id", question_id=new_question_id))
+
+        return render_template('question/add-question.html')
+
+    return "In order to add a new question, you have to be logged in"
+
+
+
 
 
 if __name__ == "__main__":
