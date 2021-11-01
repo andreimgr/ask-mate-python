@@ -38,4 +38,12 @@ def display_question_by_id (cursor: RealDictCursor, question_id: int) -> list:
     return question_by_id
 
 
+@database_common.connection_handler
+def add_new_question (cursor: RealDictCursor, new_question_title: str, new_question_message: str, user_id: int) -> list:
+    query = f"""
+        INSERT INTO question (submission_time, view_number, vote_number, title, message, user_id)
+        VALUES ('{data_handler.CURRENT_TIME}', {0}, {0}, '{new_question_title}', '{new_question_message}',{user_id})"""
+    cursor.execute(query)
+
+
 
