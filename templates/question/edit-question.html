@@ -1,0 +1,15 @@
+{% include 'header.html' %}
+
+<div class="edit-question">
+    {% for question in question_details %}
+    <form action="/question/{{ question.id }}/edit" method="POST">
+        <label>Edit question title: </label><br/>
+        <input type="text" name="updated_question_title" value="{{ question.title}}">
+        <label>Edit question message: </label><br/>
+        <textarea name="updated_question_message" rows="10" cols="40">{{ question.message }}</textarea>
+        <button type="submit">Post edited question</button>
+    </form>
+    {% endfor %}
+</div>
+
+{% include 'footer.html' %}
