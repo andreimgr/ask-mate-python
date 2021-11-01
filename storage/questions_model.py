@@ -131,4 +131,14 @@ def getVotes (cursor: RealDictCursor, answer_id) -> list:
 
     return fetch["vote_number"]
 
+@database_common.connection_handler
+def modifyVote (cursor: RealDictCursor, tableToBeQueried, item_id, voteModifier) -> list:
+    query = f"""
+    UPDATE {tableToBeQueried}
+    SET vote_number = vote_number + {voteModifier}
+    WHERE
+    id = {item_id};
+    """
+    cursor.execute(query)
+
 
