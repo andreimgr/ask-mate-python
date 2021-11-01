@@ -16,6 +16,20 @@ def display_latest_five_questions():
     return render_template("index.html", latest_five_questions=latest_five_questions)
 
 
+@app.route('/register', methods=["GET","POST"])
+def register():
+    if request.method == "POST":
+        form_input = dict(request.form)
+        username = form_input["username"]
+        password = data_handler.hash_password(form_input["password"])
+        
+
+        data_handler.register_user(username, password)
+        
+        return redirect(url_for("display_questions"))
+
+    return render_template("register.html")
+
 
 
 if __name__ == "__main__":
