@@ -150,4 +150,23 @@ def get_user_answers (cursor: RealDictCursor, user_id: int) -> list:
     return user_answers
 
 
+@database_common.connection_handler
+def get_user_info (cursor: RealDictCursor, user_id: int) -> list:
+    query = f"""
+        SELECT users.id,
+        users.username AS username,
+        users.created_on AS user_registration_date,
+        COUNT(question.user_id) AS user_asked_questions_counter,
+        COUNT(answer.user_id) AS user_answers_counter
+        FROM users
+        JOIN question ON users.id = question.user_id
+        JOIN answer ON users.id = answer.user_id
+        WHERE users.id = {user_id}
+        GROUP BY users.id"""
+
+    cursor.execute(query)
+    fetch = dict(cursor.fetchone())
+
+    return fetch
+
 
