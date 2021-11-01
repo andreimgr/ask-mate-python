@@ -51,4 +51,13 @@ def add_new_answer (cursor: RealDictCursor, question_id: int, new_answer: str, u
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def edit_answers_by_id (cursor: RealDictCursor, answer_id: int, new_message: str) -> list:
+    query = f"""
+        UPDATE answer
+        SET message = '{new_message}'
+        WHERE id = {answer_id}"""
+    cursor.execute(query)
+
+
 
