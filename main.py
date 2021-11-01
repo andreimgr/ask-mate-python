@@ -31,6 +31,28 @@ def register():
     return render_template("register.html")
 
 
+@app.route('/login', methods=["GET","POST"])
+def login():
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+        password = request.form["password"]
+
+        check_login = data_handler.check_login(session["username"], password)
+
+        if check_login is True:
+            return redirect(url_for("display_questions"))
+        return render_template("login.html", check_login=check_login)
+    
+    return render_template("login.html")
+
+
+@app.route("/logout")
+def logout():
+    session.pop("username", None)
+    return redirect(url_for("display_questions"))
+
+
+
 
 if __name__ == "__main__":
     app.run(
