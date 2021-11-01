@@ -82,4 +82,24 @@ def sort_questions (cursor: RealDictCursor, order_by: str, sort_direction: str) 
     return sorted_questions 
 
 
+@database_common.connection_handler
+def display_latest_five_questions (cursor: RealDictCursor) -> list:
+    query = """
+        SELECT question.id AS question_id, question.submission_time AS question_submission_time, question.title AS question_title, users.username AS username
+        FROM question
+        JOIN users
+        ON question.user_id = users.id
+        ORDER BY submission_time
+        DESC LIMIT 5"""
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    latest_five_questions = []
+
+    for question in fetch:
+        latest_five_questions.append(dict(question))
+
+    return latest_five_questions
+
+
 
