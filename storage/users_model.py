@@ -169,4 +169,15 @@ def get_user_info (cursor: RealDictCursor, user_id: int) -> list:
 
     return fetch
 
+@database_common.connection_handler
+def modifyReputation (cursor: RealDictCursor,user_id, repModifier) -> list:
+    query = f"""
+    UPDATE users
+    SET reputation = reputation + {repModifier}
+    WHERE
+    id = {user_id};
+    """
+    cursor.execute(query)
+    
+    
 
