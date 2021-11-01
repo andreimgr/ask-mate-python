@@ -147,6 +147,30 @@ def edit_question(question_id):
     return render_template("not-allowed.html")
 
 
+@app.route('/question/<int:question_id>/new-answer', methods=["GET","POST"])
+def add_new_answer(question_id):
+    question_user_id = data_handler.users_model.get_username_by_question_id(question_id)
+
+    if "username" in session and session["username"] == question_user_id:
+        user_id = data_handler.users_model.get_id_for_user(session['username'])
+        
+        if request.method == "POST":
+            form_input = dict(request.form)
+            new_answer_message = form_input["answer_message"]
+
+            data_handler.answers_model.add_new_answer(question_id, new_answer_message, user_id)
+
+            return redirect(url_for(
+                'display_question_by_id', 
+                question_id=question_id))
+
+        return render_template(
+            'answer/add-answer.html', 
+            question_id=question_id)
+
+    return "In order to add a new question, you have to be logged in"
+
+
 if __name__ == "__main__":
     app.run(
     host="127.0.0.1",
