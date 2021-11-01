@@ -179,5 +179,4 @@ def modifyReputation (cursor: RealDictCursor,user_id, repModifier) -> list:
     """
     cursor.execute(query)
     
-    
 
