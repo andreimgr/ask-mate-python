@@ -21,4 +21,21 @@ def display_questions (cursor: RealDictCursor) -> list:
     return questions
 
 
+@database_common.connection_handler
+def display_question_by_id (cursor: RealDictCursor, question_id: int) -> list:
+    query = f"""
+        SELECT *
+        FROM question
+        WHERE id = {question_id}"""
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    question_by_id = []
+
+    for row in fetch:
+        question_by_id.append(dict(row))
+
+    return question_by_id
+
+
 
