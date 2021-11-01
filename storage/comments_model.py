@@ -76,4 +76,12 @@ def update_comment_by_id (cursor: RealDictCursor, comment_id: int, new_message: 
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def delete_comment_by_id (cursor: RealDictCursor, comment_id: int) -> list:
+    query = f"""
+        DELETE FROM comment
+        WHERE id = {comment_id}"""
+    cursor.execute(query)
+
+
 
