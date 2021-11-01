@@ -43,4 +43,28 @@ def add_comment_to_answer (cursor: RealDictCursor, answer_id: int, message: str,
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def display_comments_for_answer (cursor: RealDictCursor, answer_id):
+    query = f"""
+        select comment.id AS comment_id,
+        comment.message AS comment_message,
+        comment.submission_time AS comment_submission_time,
+        comment.answer_id AS comment_answer_id,
+        answer.id AS answer_id,
+        answer.message AS answer_message
+        from comment
+        join answer
+        on comment.answer_id = answer.id"""
+
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    comments_by_answer = []
+
+    for comment in fetch:
+        comments_by_answer.append(dict(comment))
+
+    return comments_by_answer
+
+
 
