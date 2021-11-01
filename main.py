@@ -123,6 +123,29 @@ def delete_question(question_id):
     return render_template("not-allowed.html")
 
 
+@app.route('/question/<int:question_id>/edit', methods=["GET","POST"])
+def edit_question(question_id):
+    question_user_id = data_handler.users_model.get_username_by_question_id(question_id)
+  
+    if "username" in session and session["username"] == question_user_id:
+
+        if request.method == "POST":
+            form_input = dict(request.form)
+            updated_question_title = form_input["updated_question_title"]
+            updated_question_message = form_input["updated_question_message"]
+
+            data_handler.questions_model.edit_question_by_id(question_id, updated_question_title, updated_question_message)
+
+            return redirect (url_for ('display_question_by_id',question_id=question_id))
+
+        question_details = data_handler.questions_model.display_question_by_id(question_id)
+        
+        return render_template(
+            'question/edit-question.html', 
+            question_details=question_details)
+
+    return render_template("not-allowed.html")
+
 
 if __name__ == "__main__":
     app.run(
