@@ -76,4 +76,25 @@ def get_username_by_answer_id (cursor: RealDictCursor, answer_id: int) -> list:
     return username
 
 
+@database_common.connection_handler
+def get_user_questions (cursor: RealDictCursor, user_id: int) -> list:
+    query = f"""
+        SELECT users.id AS user_id,
+        question.title AS question_title,
+        question.id AS question_id
+        FROM users
+        JOIN question ON users.id = question.user_id
+        WHERE question.user_id = {user_id}"""
+
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    user_questions = []
+
+    for questions in fetch:
+        user_questions.append(dict(questions))
+
+    return user_questions
+
+
 
