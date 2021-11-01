@@ -1,0 +1,100 @@
+{% include 'header.html' %}
+
+{% for question in questions %}
+<div class="question">
+    <span class="submission_time">Posted by {{ question_posted_by }} @ {{ question.submission_time }}</span>
+    <h2>{{ question.title }}</h2>
+    <div class="question-message">
+        <p>{{ question.message }}</p>
+    </div>
+
+
+        <div class ="voting">
+            <a id ="upvoteButton" href="upvote">UpVote</a>
+            <a id ="downvoteButton" href="downvote">DownVote</a>  
+                 
+        </div>   
+
+        <div class ="counter1">
+        <p>{{ question.vote_number }}</p>    
+        </div>  
+        {% endfor %}
+
+        
+
+    {% if session['username'] == question_posted_by %}
+    <div class="question-options">
+        <a class="edit-question" href="edit">Edit question</a>
+        <a class="delete-question" href="delete">Delete question</a>
+
+
+    </div>
+    {% endif %}
+
+</div>
+
+{% if comments_for_questions %}
+<div class="question-comments">
+    <h3>Comments: </h3>
+
+    <ul>
+        {% for comment in comments_for_questions %}
+        <p class="tag-commented">{{comment.username}} @ {{ comment.comment_submission_time }}</p>
+        <li>{{ comment.comment_message }}</li>
+        {% endfor %}
+    </ul>
+</div>
+{% endif %}
+
+
+<div class="clear"></div>
+
+{% if answers_by_question_id %}
+{% for answer in answers_by_question_id %}
+<div class="answers">
+    <!-- <h3 style="color: green;">Answer: </h3> -->
+
+    <p class="tag-answered"><strong>{{ answer.username }} @ {{ answer.answer_submission_time }}: </strong></p>
+    <div class="answer-message">
+        <p>{{ answer.answer_message }} </p>
+    </div>
+    
+    <div class ="voting">
+            <a id ="upvoteButton" href="/answer/{{ answer.answer_id }}/upvote">UpVote</a>
+            <a id ="downvoteButton" href="/answer/{{ answer.answer_id }}/downvote">DownVote</a>    
+            
+            <div class ="counter2">
+            <p>{{ answer.vote_number }}</p>  
+            </div>  
+                  
+    </div>   
+    
+    {% if session['username'] == answer.username %}
+    <div class="answer-options">
+        <a class="answer-edit" href="/answer/{{ answer.answer_id }}/edit">Edit answer</a>
+        <a class="answer-delete" href="/answer/{{ answer.answer_id}}/delete">Delete answer</a>
+
+    
+
+    </div>
+    {% endif %}
+</div>
+
+<!-- <ul class="comment">
+    <li>
+        <a href="/answer/{{ answer.answer_id }}/add-comment">Comment answer</a>
+    </li>
+</ul> -->
+{% endfor %}
+
+{% for comment in comments_for_answer %}
+<div class="answer-comments">
+    <!-- {% for comment in comments_for_answers %} -->
+    <p class="tag-commented">{{comment.username}} @ {{ comment.comment_submission_time }}</p>
+    <li>{{ comment.comment_message }}</li>
+    <!-- {% endfor %} -->
+</div>
+{% endfor %}
+{% endif %}
+
+
