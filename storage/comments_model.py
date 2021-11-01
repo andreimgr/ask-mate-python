@@ -27,4 +27,12 @@ def display_comments_by_question_id(cursor: RealDictCursor, question_id) -> list
     return comments_by_question
 
 
+@database_common.connection_handler
+def add_comment_to_question (cursor: RealDictCursor, question_id: int, message: str, user_id: int) -> list:
+    query = f"""
+        INSERT INTO comment (question_id, message, submission_time, user_id)
+        VALUES ({question_id}, '{message}', '{data_handler.CURRENT_TIME}',{user_id})"""
+    cursor.execute(query)
+
+
 
