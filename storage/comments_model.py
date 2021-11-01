@@ -67,4 +67,13 @@ def display_comments_for_answer (cursor: RealDictCursor, answer_id):
     return comments_by_answer
 
 
+@database_common.connection_handler
+def update_comment_by_id (cursor: RealDictCursor, comment_id: int, new_message: str) -> list:
+    query = f"""
+        UPDATE comment
+        SET message = '{new_message}', submission_time = '{data_handler.CURRENT_TIME}'
+        WHERE id = {comment_id}"""
+    cursor.execute(query)
+
+
 
