@@ -35,4 +35,12 @@ def add_comment_to_question (cursor: RealDictCursor, question_id: int, message: 
     cursor.execute(query)
 
 
+@database_common.connection_handler
+def add_comment_to_answer (cursor: RealDictCursor, answer_id: int, message: str, user_id: int) -> list:
+    query = f"""
+        INSERT INTO comment (answer_id, message, submission_time, user_id)
+        VALUES ({answer_id}, '{message}', '{data_handler.CURRENT_TIME}', {user_id})"""
+    cursor.execute(query)
+
+
 
