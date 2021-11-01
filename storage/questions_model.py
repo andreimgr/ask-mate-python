@@ -102,4 +102,33 @@ def display_latest_five_questions (cursor: RealDictCursor) -> list:
     return latest_five_questions
 
 
+@database_common.connection_handler
+def get_question_id_from_answer (cursor: RealDictCursor, answer_id) -> list:
+    query = f"""
+        SELECT question_id
+        FROM answer
+        WHERE id = {answer_id}"""
+    cursor.execute(query)
+    fetch = cursor.fetchall()
+
+    for answer in fetch:
+        question_id = answer["question_id"]
+
+    return question_id
+
+@database_common.connection_handler
+def getVotes (cursor: RealDictCursor, answer_id) -> list:
+    query = f"""
+    SELECT vote_number
+    FROM answer
+    WHERE 
+    id = {answer_id}
+    LIMIT 1;
+    """
+    cursor.execute(query)
+    
+    fetch = dict(cursor.fetchone())
+
+    return fetch["vote_number"]
+
 
