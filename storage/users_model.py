@@ -97,4 +97,19 @@ def get_user_questions (cursor: RealDictCursor, user_id: int) -> list:
     return user_questions
 
 
+@database_common.connection_handler
+def user_questions_count(cursor: RealDictCursor, user_id: int) -> list:
+    query = f"""
+        SELECT
+        COUNT(question.user_id) as user_questions_counter
+        FROM users
+        LEFT JOIN question ON users.id = question.user_id
+        WHERE users.id = {user_id}"""
+
+    cursor.execute(query)
+    fetch = cursor.fetchone()
+
+    return fetch["user_questions_counter"]
+
+
 
