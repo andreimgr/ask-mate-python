@@ -43,4 +43,12 @@ def display_answer_by_id (cursor: RealDictCursor, answer_id: str) -> list:
     return answer_by_id
 
 
+@database_common.connection_handler
+def add_new_answer (cursor: RealDictCursor, question_id: int, new_answer: str, user_id: int) -> list:
+    query = f"""
+        INSERT INTO answer (submission_time, vote_number, question_id, message, user_id)
+        VALUES ('{data_handler.CURRENT_TIME}', {0}, {question_id}, '{new_answer}', {user_id})"""
+    cursor.execute(query)
+
+
 
