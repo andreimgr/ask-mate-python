@@ -228,6 +228,23 @@ def add_comment_to_question(question_id):
         return render_template("comment/add-comment.html")
 
 
+@app.route('/answer/<int:answer_id>/add-comment', methods=["GET","POST"])
+def add_comment_to_answer(answer_id):
+    if "username" in session:
+        user_id = data_handler.users_model.get_id_for_user(session['username'])
+
+        if request.method == "POST":
+            form_input = dict(request.form)
+            answer_comment = form_input["comment_message"]
+
+            data_handler.comments_model.add_comment_to_answer(answer_id, answer_comment, user_id)
+            question_id = data_handler.answers_model.get_question_id_from_answer(answer_id)
+
+            return redirect(url_for(
+                    "display_question_by_id", 
+                    question_id=question_id))
+        return render_template("comment/add-comment.html")
+
 
 if __name__ == "__main__":
     app.run(
