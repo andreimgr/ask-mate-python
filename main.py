@@ -199,6 +199,20 @@ def edit_answer(answer_id):
     return render_template("not-allowed.html")
 
 
+@app.route('/answer/<int:answer_id>/delete')
+def delete_answer(answer_id):
+    answer_user_id = data_handler.users_model.get_username_by_answer_id(answer_id)
+
+    if "username" in session and session["username"] == answer_user_id:
+        question_id = data_handler.questions_model.get_question_id_from_answer(answer_id)
+        data_handler.answers_model.delete_answer_by_id(answer_id)
+
+        return redirect(url_for("display_question_by_id", question_id=question_id))
+    return render_template("not-allowed.html")
+
+
+
+
 if __name__ == "__main__":
     app.run(
     host="127.0.0.1",
