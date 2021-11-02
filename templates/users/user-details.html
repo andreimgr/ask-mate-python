@@ -1,0 +1,40 @@
+{% include 'header.html' %}
+
+<div class="user-info">
+    <h2 style="color: green;">{{ user_info.username }}</h2>
+    <h3>Member since: {{ user_info.user_registration_date }}</h3>
+    <p>Asked <strong><span style="color: green; font-size: 130%;">{{ user_questions_count }}</span></strong> questions</p>
+    <p>Answered to <strong><span style="color: green; font-size: 130%;">{{ user_answers_count }}</span></strong> questions</p>
+</div>
+
+<div class="user-details">
+    <div class="user-questions">
+        <h3>User questions: </h3>
+
+        {% for user_questions in user_questions %}
+        <ul>
+            <li>
+                <p>
+                    <a href="../question/{{ user_questions.question_id }}">
+                        {{ user_questions.question_title }}
+                    </a>
+                </p>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+    
+    <div class="user-answers">
+        <h3>User answers: </h3>
+
+        {% for user_answers in user_answers %}
+        <ul>
+            <li>
+                <p>{{ user_answers.answer_message }}</p>
+            </li>
+        </ul>
+        {% endfor %}
+    </div>
+</div>
+
+{% include 'footer.html' %}
