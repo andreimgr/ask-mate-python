@@ -30,12 +30,9 @@
 <!-- ABOUT THE PROJECT -->
 ## About The Project
 
-<p align="left">
 Ask mate is a StackOverflow-like application, so users can ask questions, answer them and comment as well. Upvoting and downvoting features for questions and answers. There is a login option to separate registered users from non-registered users when using specific features (commenting on questions or answers, voting/downvoting questions and answers).
 
-<br/>
 The project has been built using Python with Flask and Jinja.
-</p>
     
 <!-- GETTING STARTED -->
 ## Getting Started
