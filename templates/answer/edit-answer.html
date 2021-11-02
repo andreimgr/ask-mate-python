@@ -1,0 +1,16 @@
+{% include 'header.html' %}
+
+<div class="edit-answer">
+    <form action="/answer/{{ answer_id }}/edit" method="POST">
+        <p>
+            <label>Edit answer: </label><br/>
+            <textarea name="updated_answer_message" rows="10" cols="40">{{ answer_message }}</textarea>
+        </p>
+        <p>
+            <button type="submit">Post edited answer</button>
+        </p>
+    </form>
+</div>
+
+
+{% include 'footer.html' %}
