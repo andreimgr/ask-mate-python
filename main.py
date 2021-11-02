@@ -343,6 +343,26 @@ def downvoteAnswer(answer_id):
     return redirect(f"/question/{question_id}")
 
 
+@app.route('/question/<int:question_id>/downvote', methods=["GET"])
+def downvoteQuestion(question_id):
+    if "username" in session:
+        currentUserId = data_handler.users_model.get_id_for_user(session['username'])
+        currentVote = data_handler.getVoteType("voted_questions",question_id,currentUserId)
+        targetUserId = data_handler.getTargetUserId("question",question_id)
+
+        if currentVote == 1:
+            data_handler.questions_model.modifyVote("question",question_id,-1)
+            data_handler.users_model.modifyReputation(targetUserId,-2)
+            data_handler.addTopicResponseRecord("voted_questions",targetUserId,question_id,-1)
+        elif currentVote == 0:
+            data_handler.questions_model.modifyVote("question",question_id,-1)
+            data_handler.users_model.modifyReputation(targetUserId,-2)
+            data_handler.addTopicResponseRecord("voted_questions",targetUserId,question_id,-1)
+
+        
+    return redirect(f"/question/{question_id}")
+
+
 if __name__ == "__main__":
     app.run(
     host="127.0.0.1",
