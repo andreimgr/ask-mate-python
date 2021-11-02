@@ -1,0 +1,12 @@
+{% include 'header.html' %}
+
+<div class="add-answer">
+    <form method="POST" action="/question/{{ question_id }}/new-answer">
+        <label>Answer: </label>
+        <textarea name="answer_message" placeholder="Message: " cols="50" rows="10"></textarea>
+        <button type="submit">Post answer</button>
+    </form>
+
+</div>
+
+{% include 'footer.html' %}
