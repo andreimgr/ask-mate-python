@@ -1,0 +1,355 @@
+.clear {clear: both;}
+
+body {
+    margin: 0 !important;
+    font-family: Arial, Helvetica, sans-serif;
+    background-color: rgb(226, 226, 226);
+}
+
+.wrapper {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-auto-rows: auto;
+}
+
+.wrapper .login {
+    margin-top: 2%;
+    grid-column: 5 / 8;
+}
+
+.wrapper .login form {width: 100%; margin: 0 auto;}
+.wrapper .login form input[type=text],
+.wrapper .login form input[type=password] {
+    width: 100%;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 100%;
+    padding: 2%;
+    margin: 2%;
+}
+
+.wrapper .header,
+.wrapper .question,
+.wrapper .answers,
+.wrapper .add-question,
+.wrapper .edit-question,
+.wrapper .add-answer,
+.wrapper .edit-answer,
+.wrapper .add-comment,
+.wrapper .user-list,
+.wrapper .user-details {
+    grid-column: 3 / 11;
+    background-color: white;
+    border-bottom: 5px solid lightgray;
+}
+
+.wrapper .user-info {
+    text-align: center;
+    grid-column: 3 / 11;
+}
+
+.wrapper .user-details,
+.wrapper .user-list {padding: 2%;}
+
+.wrapper .user-list ul li a {
+    color: green;
+}
+
+.wrapper .user-list ul li a:hover {color: green;}
+
+.wrapper .user-list ul li span.green {color: green;}
+.wrapper .user-list ul li p span.orange {
+    color: darkorange;
+}
+
+.wrapper .user-details .user-questions ul li p a {
+    color: darkorange;
+    text-decoration: none;
+}
+
+.wrapper .user-details .user-questions ul li p a:hover {
+    color: green;
+    text-decoration: underline;
+}
+
+
+.wrapper .menu {
+    grid-column: 1 / -1;
+    background-color: white;
+    grid-row: 1 / 12;
+    border-bottom: 5px solid lightgray;
+    padding-bottom: 0.4%;
+    margin-bottom: 1.5%;
+}
+
+.wrapper .menu ul li {
+    float: left;
+    display: block;
+    height: 150%;
+    margin-right: 2%;
+    list-style: none;
+    padding-top: 0.5%;
+    font-size: 110%;
+}
+
+.wrapper .menu ul li a {
+    color: gray;
+    /* font-weight: bold; */
+    text-decoration: none;
+}
+
+.wrapper .menu ul li a:hover {
+    color: green;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.wrapper .menu ul li a.logout {
+    color: red;
+}
+
+.wrapper .menu ul li a.logout:hover {
+    text-decoration: underline;
+}
+
+.wrapper .sorting-questions {
+    grid-column: 7 / 11;
+    margin-top: 1%;
+}
+
+.wrapper .question-comments,
+.wrapper .answer-comments {
+    grid-column: 3 / 11;
+    color: rgb(97, 97, 97);
+    padding: 0 2%;
+    margin-bottom: 2%;
+}
+
+/* .header {
+    grid-row: 1 / 2;
+} */
+
+.header form#search input[type=text] {
+    display: inline-block;
+    border: none;
+    width: 85%;
+    padding: 1.5% 2%;
+    font-size: 130%;
+    color: rgb(255, 123, 0);
+}
+
+.header form#search button[type=submit],
+.wrapper .sorting-questions form button[type=submit],
+.wrapper .add-question form button[type=submit],
+.wrapper .edit-question form button[type=submit],
+.wrapper .add-answer form button[type=submit],
+.wrapper .edit-answer form button[type=submit],
+.wrapper .add-comment form button[type=submit],
+.wrapper .login form button[type=submit]  {
+    border: none;
+    background-color: orange;
+    font-size: 130%;
+    float: right;
+}
+
+.header form#search button[type=submit] {
+    width: 10%;
+    padding: 1.5% 2%;
+}
+
+.wrapper .sorting-questions form button[type=submit] {
+    width: 11%;
+    margin-top: 2%;
+    padding: 1.6% 2%;
+}
+
+.wrapper .add-question form button[type=submit],
+.wrapper .edit-question form button[type=submit],
+.wrapper .add-answer form button[type=submit],
+.wrapper .edit-answer form button[type=submit],
+.wrapper .add-comment form button[type=submit],
+.wrapper .login form button[type=submit] {
+    width: 20%;
+    display: inline-block;
+    margin: 0 3% 2% 0;
+    padding: 1% 0;
+}
+
+.header form#search button:hover,
+.wrapper .sorting-questions form button:hover,
+.wrapper .add-question form button:hover,
+.wrapper .edit-question form button:hover,
+.wrapper .add-answer form button:hover,
+.wrapper .edit-answer form button:hover,
+.wrapper .add-comment form button:hover,
+.wrapper .login form button:hover {
+    background-color: lightgreen;
+}
+
+.wrapper h1 {
+    grid-column: 3 / 7;
+    color: green;
+    text-shadow: white 1px 1px 1px;
+}
+
+.wrapper .questions_list,
+.wrapper .search_results {
+    grid-column: 3 / 11;
+    /* border: 1px solid rgb(197, 197, 197); */
+}
+
+.wrapper .questions_list ul,
+.wrapper .search_results ul {
+    margin: 0;
+    padding: 0;
+}
+
+.wrapper .questions_list ul li,
+.wrapper .search_results ul li {
+    background-color: white;
+    list-style: none;
+    margin-bottom: 1.5%;
+    padding: 2%;
+    border-bottom: 5px solid lightgray;
+}
+
+.wrapper .questions_list ul li span {color: gray;}
+
+.wrapper .questions_list ul li a,
+.wrapper .search_results ul li a {
+    color: darkorange;
+    display: block;
+    text-decoration: none;
+    font-size: 160%;
+    font-weight: bold;
+    margin-top: 0.5%;
+}
+
+.wrapper .questions_list ul li a:hover,
+.wrapper .search_results ul li a:hover {color: green;}
+
+.wrapper .sorting-questions form select,
+.wrapper .add-question form input[type=text],
+.wrapper .add-question form textarea,
+.wrapper .edit-question form input[type=text],
+.wrapper .edit-question form textarea,
+.wrapper .add-answer form textarea,
+.wrapper .edit-answer form textarea,
+.wrapper .add-comment form textarea
+.wrapper .login form input[type=text],
+.wrapper .login form input[type=password] {
+    /* background-color: orange; */
+    color: gray;
+    font-size: 100%;
+    /* box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); */
+    outline: none;
+}
+
+.wrapper .sorting-questions form select {
+    width: 40%;
+    padding: 12px;
+    margin: 2%;
+    -webkit-appearance: button;
+    appearance: button;
+}
+
+.wrapper .sorting-questions form input[type=text] {width: 120%;}
+
+.wrapper .add-question form input[type=text],
+.wrapper .edit-question form input[type=text],
+.wrapper .add-question form input textarea,
+.wrapper .edit-question form textarea,
+.wrapper .add-answer form textarea,
+.wrapper .edit-answer form textarea,
+.wrapper .add-comment form textarea {
+    font-family: Arial, Helvetica, sans-serif;
+    width: 93%;
+    padding: 1%;
+    margin: 1% 2%;
+}
+
+.wrapper .question-options {
+    grid-column: 3 / 11;
+    margin-top: 1%;
+}
+
+.wrapper .question-options a,
+.wrapper .answers .answer-options a {
+    display: inline-block;
+    text-decoration: none;
+    border: none;
+    padding: 0.5% 1%;
+    border-bottom: 2px solid;
+    font-size: 90%;
+}
+
+.wrapper .question-options a.edit-question,
+.wrapper .answers .answer-options a.answer-edit {
+    background-color: yellow;
+    color: darkblue;
+    border-color: rgb(187, 187, 0);
+}
+
+.wrapper .question-options a.edit-question:hover,
+.wrapper .answers .answer-options a.answer-edit:hover {
+    background-color: rgb(187, 187, 0);
+    color: white;
+}
+
+.wrapper .question-options a.delete-question,
+.wrapper .answers .answer-options a.answer-delete {
+    background-color: red;
+    color: white;
+    border-color: rgb(173, 0, 0);
+}
+
+.wrapper .question-options a.delete-question:hover,
+.wrapper .answers .answer-options a.answer-delete:hover {
+    background-color: rgb(173, 0, 0);
+}
+
+.wrapper .question {
+    margin-top: 1%;
+    padding: 2%;
+}
+
+.wrapper .question .submission_time {color: darkgray;}
+.wrapper .question h2 {
+    color: darkorange;
+    font-size: 180%;
+}
+.wrapper .question .question-message p {
+    font-size: 130%;
+    line-height: 170%;
+}
+
+.wrapper .add-question form label,
+.wrapper .edit-question form label,
+.wrapper .add-answer form label,
+.wrapper .edit-answer form label,
+.wrapper .add-comment form label {
+    display: inline-block;
+    margin: 1% 2%;
+    font-size: 150%;
+    color: darkorange;
+}
+
+.wrapper .question-comments ul li,
+.wrapper .answer-comments ul li {
+    margin-left: 2%;
+}
+
+.wrapper .answers {
+    margin-bottom: 1%;
+    padding: 1% 2%;
+}
+
+.wrapper .answers p.tag-answered {
+    color: green;
+    margin-top: 0.5%;
+}
+
+.wrapper .answers ul.answer-options li {
+    list-style: none;
+    float: left;
+    padding-right: 1%;
+}
