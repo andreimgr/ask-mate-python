@@ -246,6 +246,19 @@ def add_comment_to_answer(answer_id):
         return render_template("comment/add-comment.html")
 
 
+
+@app.route('/users')
+def display_users():
+    if "username" in session:
+        user_list = data_handler.users_model.display_users()
+
+
+        return render_template(
+            "users/users.html", 
+            user_list = user_list)
+
+
+
 if __name__ == "__main__":
     app.run(
     host="127.0.0.1",
