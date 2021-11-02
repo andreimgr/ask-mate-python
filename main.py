@@ -258,6 +258,25 @@ def display_users():
             user_list = user_list)
 
 
+@app.route('/users/<int:user_id>')
+def display_user_details(user_id):
+    if "username" in session:
+        user_questions = data_handler.users_model.get_user_questions(user_id)
+        user_questions_count = data_handler.users_model.user_questions_count(user_id)
+
+        user_answers = data_handler.users_model.get_user_answers(user_id)
+        user_answers_count = data_handler.users_model.user_answers_count(user_id)
+
+        user_info = data_handler.users_model.get_user_info(user_id)
+
+        return render_template(
+            "users/user-details.html",
+            user_questions=user_questions,
+            user_answers=user_answers,
+            user_info=user_info,
+            user_questions_count=user_questions_count,
+            user_answers_count=user_answers_count)
+
 
 if __name__ == "__main__":
     app.run(
