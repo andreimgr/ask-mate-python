@@ -1,0 +1,18 @@
+{% include 'header.html' %}
+
+<h1>Registered Users</h1>
+
+<div class="user-list">
+    <ul>
+        {% for user in user_list %}
+        <li>
+            <p><a href="users/{{ user.user_id }}"><strong>{{ user.username }}</strong></a> registered at <span class="green"><strong>{{ user.user_registration_time }}</strong></span></p>
+            <!-- <p><strong><span class="orange">{{ user.username }}</span></strong> asked <span class="orange"><strong>{{ user.user_asked_questions_counter }}</strong></span> questions </p>
+            <p><strong><span class="orange">{{ user.username }}</span></strong> answered to <span class="orange"><strong>{{ user.user_answers_counter }}</strong></span> questions </p> -->
+        </li>
+      {% endfor %}
+    </ul>
+    
+</div>
+
+{% include 'footer.html' %}
