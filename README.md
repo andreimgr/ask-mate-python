@@ -24,7 +24,6 @@
     </li>
     <li><a href="#usage">Usage</a></li>
     <li><a href="#contact">Contact</a></li>
-    <li><a href="#acknowledgements">Acknowledgements</a></li>
   </ol>
 </details>
 
@@ -44,7 +43,6 @@ The project has been built using Python with Flask and Jinja.
 To get a local copy up and running follow these simple steps.
 
 
-
 ### Prerequisites
 
 Any computer belonging to millennia III will work.
@@ -60,7 +58,19 @@ Any computer belonging to millennia III will work.
 2. Install an IDE to be able to run the project. As a suggestion, check out Intellij Idea.
 
 3. Run this project, you won't need aditional packages
-    
+
+  
+<!-- USAGE EXAMPLES -->
+## Usage
+
+Main page. If you're not logged in you can browse through the latest five questions.
+
+![Screenshot 1](https://user-images.githubusercontent.com/67573943/139800076-0b317ebc-3a6b-418b-8651-33dcf7b1bcff.png)
+  
+Logged in user with question details page
+  
+![Screenshot 2](https://user-images.githubusercontent.com/67573943/139800684-289b4492-a1ca-43b9-a822-1bbe6f89ec61.png)
+  
 <!-- CONTACT -->
 ## Contact
 
