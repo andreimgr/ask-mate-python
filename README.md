@@ -6,7 +6,7 @@
 
 [comment]: <> (  </a>)
 
-<h2 align="center">Ask me mate</h2>
+  <h1 align="center">Ask me mate</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
