@@ -1,12 +1,4 @@
 <!-- PROJECT LOGO -->
-<br />
-<p align="center">
-
-[comment]: <> (    <img src="images/logo.png" alt="Logo" width="80" height="80">)
-
-[comment]: <> (  </a>)
-
-  <h1 align="center">Ask me mate</h1>
 
 <!-- TABLE OF CONTENTS -->
 <details open="open">
@@ -14,6 +6,9 @@
   <ol>
     <li>
       <a href="#about-the-project">About The Project</a>
+    </li>
+    <li>
+        <a href="#technologies-used">Technologies used</a>
     </li>
     <li>
       <a href="#getting-started">Getting Started</a>
@@ -34,6 +29,13 @@ Ask mate is a StackOverflow-like application, so users can ask questions, answer
 
 The project has been built using Python with Flask and Jinja.
     
+<!-- ABOUT THE PROJECT -->
+## Technologies used
+![](https://img.shields.io/badge/Backend-Python-informational?style=flat&logo=python&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Framework-Flask-informational?style=flat&logo=flask&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Templating-Jinja-informational?style=flat&logo=jinja&logoColor=white&color=2bbc8a)
+![](https://img.shields.io/badge/Database-PostgreSQL-informational?style=flat&logo=postgresql&logoColor=white&color=2bbc8a)
+
 <!-- GETTING STARTED -->
 ## Getting Started
 
